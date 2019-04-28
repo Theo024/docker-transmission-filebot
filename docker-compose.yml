@@ -1,0 +1,30 @@
+version: "3.7"
+
+networks:
+  traefik:
+    external: true
+  transmission-filebot:
+    name: transmission-filebot
+
+volumes:
+  library:
+    external: true
+
+services:
+  transmission-filebot:
+    image: theo024/transmission-filebot:latest
+    restart: always
+    networks:
+      - traefik
+      - transmission-filebot
+    volumes:
+      - library:/library
+      - ./downloads:/downloads
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.enable=true"
+      - "traefik.port=9091"
+      - "traefik.backend=transmission-filebot"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.frontend.rule=Host:${TRANSMISSION_DOMAIN}"
+      - "traefik.frontend.auth.basic.users=${TRANSMISSION_USERS}"
