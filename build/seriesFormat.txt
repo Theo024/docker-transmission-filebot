@@ -1,0 +1,1 @@
+TV Shows/{n}/{episode.special ? 'Special' : 'Season '+s.pad(2)}/{t.replaceAll(/[`´‘’ʻ]/, /'/).replaceAll(/[!?.]+$/).replacePart(', Part $1')} {episode.special ? 'S00E'+special.pad(2) : s00e00}{'.'+lang}
