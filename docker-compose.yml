@@ -19,7 +19,6 @@ services:
       - transmission-filebot
     volumes:
       - library:/library
-      - ./downloads:/downloads
     labels:
       - "traefik.docker.network=traefik"
       - "traefik.enable=true"

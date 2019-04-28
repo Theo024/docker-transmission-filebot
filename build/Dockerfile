@@ -12,13 +12,11 @@ RUN apt-get update && \
     rm -rf filebot_4.7.9_amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 
-COPY seriesFormat.txt /
 COPY settings.json /etc/transmission-daemon/
 COPY transmission-postprocess.sh /
 
 EXPOSE 9091
 
 VOLUME ["/library"]
-VOLUME ["/downloads"]
 
 CMD ["/usr/bin/transmission-daemon", "-f", "-g", "/etc/transmission-daemon"]
